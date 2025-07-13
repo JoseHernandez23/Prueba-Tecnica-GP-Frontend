@@ -1,0 +1,42 @@
+<div class="catalogo-container" style="margin-top: 100px;">
+  <div *ngIf="!productosCargados">
+    <p>Cargando productos...</p>
+  </div>
+
+  <div *ngIf="productosCargados && productos.length > 0">
+    <ng-container *ngIf="productosFiltrados.length > 0; else sinResultados">
+      <div *ngFor="let producto of productosPaginados" class="producto-card">
+        <h2>{{ producto.title }}</h2>
+        <div class="contenido-producto">
+          <img [src]="producto.images" alt="{{ producto.title }}" class="imagen-producto" />
+          <div class="info-producto">
+            <p><strong>Precio:</strong> {{ producto.price | currency:'USD' }}</p>
+            <p><strong>Unidades Disponibles:</strong> {{ producto.stock }}</p>
+          </div>
+        </div>
+        <div class="botones-container">
+          <button class="btn btn-primary" (click)="verProducto(producto.id)">
+            Detalle del Producto
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #sinResultados>
+      <div class="alert alert-warning">No hay productos que coincidan con la búsqueda.</div>
+    </ng-template>
+    <div class="paginacion" *ngIf="totalPages > 1">
+  <button class="btn btn-primary" (click)="cambiarPagina(-1)" [disabled]="currentPage === 1">Anterior</button>
+  <ng-container *ngFor="let page of paginas">
+  <button 
+    class="btn" 
+    [ngClass]="{'btn-primary': currentPage === page, 'btn-outline-primary': currentPage !== page}" 
+    (click)="currentPage = page">
+    {{ page }}
+  </button>
+</ng-container>
+  <button class="btn btn-primary" (click)="cambiarPagina(1)" [disabled]="currentPage === totalPages">Siguiente</button>
+</div>
+  </div>
+</div>
+

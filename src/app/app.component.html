@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+      background-image: url('../assets/fondo5.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    .page-container::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: -1;
+    }
+    </style>
+  </head>
+<body>
+
+<div class="page-container d-flex flex-column min-vh-100">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  </nav>
+
+  <main class="flex-fill container py-4">
+    <router-outlet></router-outlet>
+  </main>
+
+ <footer class="footer bg-dark text-white py-4 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5>Sobre Nosotros</h5>
+        <ul class="list-unstyled">      
+          <li><span>Quiénes somos</span></li>
+          <li><span>Nuestra historia</span></li>
+          <li><span>Trabaja con nosotros</span></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <h5>Ayuda</h5>
+        <ul class="list-unstyled">       
+          <li><span>Preguntas frecuentes</span></li>
+          <li><span>Política de privacidad</span></li>
+          <li><span>Términos y condiciones</span></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <h5>Contacto</h5>
+        <ul class="list-unstyled">
+          <li><span class="text-white">📞 (506) 1234-5678</span></li>
+          <li><span class="text-white">✉️ contactomitienda.com</span></li>
+          <li><span class="text-white">📍 San José, Costa Rica</span></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="border-light">
+    <p class="text-center mb-0">&copy; 2025 Mi Tienda. Todos los derechos reservados.</p>
+  </div>
+</footer>
+</div>
+</body>
+</html>
+

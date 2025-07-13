@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ producto.title }}</h4>
+  <button type="button" class="btn-close" aria-label="Cerrar" (click)="activeModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+  <p><strong>Descripción:</strong> {{ producto.description }}</p>
+  <p><strong>Categoría:</strong> {{ producto.category }}</p>
+  <p><strong>Marca:</strong> {{ producto.brand }}</p>
+  <p><strong>SKU:</strong> {{ producto.sku }}</p>
+  <p><strong>Precio:</strong> {{ producto.price | currency:'USD' }}</p>
+  <p><strong>Descuento:</strong> {{ producto.discountPercentage }}%</p>
+  <p><strong>Rating:</strong> {{ producto.rating }} / 5</p>
+  <p><strong>Stock:</strong> {{ producto.stock }}</p>
+  <p><strong>Disponibilidad:</strong> {{ producto.availabilityStatus }}</p>
+
+  <div *ngIf="producto.tags?.length">
+    <strong>Tags:</strong>
+    <ul>
+      <li *ngFor="let tag of producto.tags">{{ tag }}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="producto.dimensions">
+    <strong>Dimensiones:</strong>
+    <ul>
+      <li>Ancho: {{ producto.dimensions.width }} cm</li>
+      <li>Alto: {{ producto.dimensions.height }} cm</li>
+      <li>Profundidad: {{ producto.dimensions.depth }} cm</li>
+    </ul>
+  </div>
+
+  <p><strong>Peso:</strong> {{ producto.weight }} kg</p>
+  <p><strong>Garantía:</strong> {{ producto.warrantyInformation }}</p>
+  <p><strong>Envío:</strong> {{ producto.shippingInformation }}</p>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-success" (click)="agregarAlCarrito(producto)">
+  🛒 {{ producto.stock > 0 ? 'Agregar al carrito' : 'No disponible' }}
+</button>
+</div>

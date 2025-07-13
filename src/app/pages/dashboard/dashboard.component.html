@@ -1,0 +1,47 @@
+<app-navbar class="fixed-top"></app-navbar>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="top: 56px; z-index: 1030;">
+
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">      
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/todos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Todos los productos</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" routerLink="/muebles" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Muebles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/tablets" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Tablets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/smartphones" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Celulares</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/laptops" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Laptops</a>
+        </li>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Relojes
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" routerLink="/mens-watches" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Hombre</a></li>
+            <li><a class="dropdown-item" routerLink="/womens-watches" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Mujer</a></li>           
+          </ul>
+        </li>      
+      </ul>
+      <form class="d-flex" role="search">
+    <input class="form-control me-2" type="search" placeholder="Buscar"
+           aria-label="Buscar" (input)="onBuscar($event)">
+  </form>
+    </div>
+  </div>
+</nav>
+<app-catalogo [terminoBusqueda]="terminoBusqueda"></app-catalogo>
+
+
+
+
+

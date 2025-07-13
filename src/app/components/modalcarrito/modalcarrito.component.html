@@ -1,0 +1,66 @@
+
+<button class="btn btn-outline-dark position-relative mb-2" (click)="abrirModal(carritoModal)">
+  🛒
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    {{ productosCarrito.length }}
+  </span>
+</button>
+
+<ng-template #carritoModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Carrito de Compras</h5>
+    <button type="button" class="btn-close" aria-label="Cerrar" (click)="modal.dismiss()"></button>
+  </div>
+
+  <div class="modal-body">
+    <div *ngIf="productosCarrito.length > 0; else vacio">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productosCarrito; let i = index">
+            <td>{{ producto.title }}</td>
+            <td>{{ producto.price }}</td>
+            <td>
+              <input type="number"
+                class="form-control form-control-sm"
+                min="1"
+                [value]="producto.cantidad || 1"
+                (change)="cambiarCantidadDesdeEvento(i, $event)">
+            </td>
+            <td>{{ (producto.price * (producto.cantidad || 1))}}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="quitarDelCarrito(i)">🗑️</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="text-end"><strong>Total:</strong></td>
+            <td colspan="2">{{ obtenerTotal()}}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <ng-template #vacio>
+      <p class="text-muted">El carrito está vacío.</p>
+    </ng-template>
+  </div>
+
+ <div class="modal-footer">
+  <button 
+    class="btn btn-danger" 
+    (click)="efectuarCompra(modal)" 
+    [disabled]="productosCarrito.length === 0">
+    Efectuar la compra
+  </button>
+</div>
+</ng-template>
